@@ -1,7 +1,7 @@
 def is_palindrome(word):
     return word == word[::-1]
 
-print("Hello !")
+print("Hello mec!")
 
 while True:
     user_input = input("J'écoute ('exit' pour quitter) : ")
