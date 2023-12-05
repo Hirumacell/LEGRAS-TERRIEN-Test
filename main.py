@@ -1,7 +1,7 @@
 import datetime
 
 def is_palindrome(word):
-    return word == word[::-1]
+    return word.lower() == word[::-1].lower()
 
 def get_salutation(langue):
     current_hour = datetime.datetime.now().hour
@@ -38,6 +38,13 @@ langue = input("Choisissez votre langue (FR ou EN) : ")
 salutation = get_salutation(langue)
 print(salutation)
 
+def bienDit(word):
+    if is_palindrome(user_input):
+        return "Bien dit!"
+    else:
+        mirrored_text = user_input[::-1]
+        return mirrored_text
+
 while True:
     user_input = input("J'écoute ('exit' pour quitter) : ")
 
@@ -46,8 +53,4 @@ while True:
         print(auRevoir)
         break
 
-    if is_palindrome(user_input):
-        print("Bien dit!")
-    else:
-        mirrored_text = user_input[::-1]
-        print(mirrored_text)
+    bienDit(user_input)
