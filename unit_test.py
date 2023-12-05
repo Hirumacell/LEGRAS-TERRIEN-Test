@@ -1,4 +1,5 @@
 import unittest
+import datetime
 from main import is_palindrome, bienDit, get_salutation, auRevoir
 
 class TestPalindromeScript(unittest.TestCase):
@@ -35,65 +36,70 @@ class TestPalindromeScript(unittest.TestCase):
         result = bienDit(word)
 
         resultSearch = "Bien dit!"
-        self.assertEqual(result, resultSearch)
+        self.assertEqual(resultSearch, result)
 
     def test_Salutation(self):
         for langue in ["fr", "en"]:
             if (langue == "fr"):
                 result = get_salutation(langue)
 
-                for hour in [10, 21]:
-                    if (6 <= hour < 18):
-                        resultSearch = "Bonjour!"
+                hour = datetime.datetime.now().hour
 
-                        self.assertEqual(result, resultSearch)
-                    else:
-                        resultSearch = "Bonsoir!"
+                if (6 <= hour < 18):
+                    resultSearch = "Bonjour!"
 
-                        self.assertEqual(result, resultSearch)
-            elif (langue == "en"):
+                    self.assertEqual(resultSearch, result)
+                else:
+                    resultSearch = "Bonsoir!"
+
+                    self.assertEqual(resultSearch, result)
+            else:
                 result = get_salutation(langue)
 
-                for hour in [8, 12, 21]:
-                    if (6 <= hour < 12):
-                        resultSearch = "Good morning!"
+                hour = datetime.datetime.now().hour
 
-                        self.assertEqual(result, resultSearch)
-                    elif (12 <= hour < 18):
-                        resultSearch = "Good afternoon!"
+                if (6 <= hour < 12):
+                    resultSearch = "Good morning!"
 
-                        self.assertEqual(result, resultSearch)
-                    else:
-                        resultSearch = "Good evening!"
+                    self.assertEqual(resultSearch, result)
+                elif (12 <= hour < 18):
+                    resultSearch = "Good afternoon!"
 
-                        self.assertEqual(result, resultSearch)
+                    self.assertEqual(resultSearch, result)
+                else:
+                    resultSearch = "Good evening!"
+
+                    self.assertEqual(resultSearch, result)
 
     def test_AuRevoir(self):
         for langue in ["fr", "en"]:
             if (langue == "fr"):
                 result = auRevoir(langue)
 
-                for hour in [10, 21]:
-                    if (18 <= hour < 24):
-                        resultSearch = "Bonne soirée!"
+                hour = datetime.datetime.now().hour
 
-                        self.assertEqual(result, resultSearch)
-                    else:
-                        resultSearch = "Bonne journée!"
+                if (18 <= hour < 24):
+                    resultSearch = "Bonne soirée!"
 
-                        self.assertEqual(result, resultSearch)
-            elif (langue == "en"):
+                    self.assertEqual(resultSearch, result)
+                else:
+                    resultSearch = "Bonne journée!"
+
+                    self.assertEqual(resultSearch, result)
+            else:
                 result = auRevoir(langue)
 
-                for hour in [10, 21]:
-                    if (18 <= hour < 24):
-                        resultSearch = "Good night!"
+                hour = datetime.datetime.now().hour
 
-                        self.assertEqual(result, resultSearch)
-                    else:
-                        resultSearch = "Good day"
+                if (18 <= hour < 24):
+                    resultSearch = "Good night!"
 
-                        self.assertEqual(result, resultSearch)
+                    self.assertEqual(resultSearch, result)
+                else:
+                    resultSearch = "Good day!"
+
+                    self.assertEqual(resultSearch, result)
+
 
 if __name__ == '__main__':
     unittest.main()

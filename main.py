@@ -39,10 +39,10 @@ salutation = get_salutation(langue)
 print(salutation)
 
 def bienDit(word):
-    if is_palindrome(user_input):
+    if is_palindrome(word):
         return "Bien dit!"
     else:
-        mirrored_text = user_input[::-1]
+        mirrored_text = word[::-1]
         return mirrored_text
 
 while True:
