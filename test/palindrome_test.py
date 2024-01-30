@@ -2,6 +2,9 @@ import os
 import unittest
 
 from src.detecteurPalindrome import DetecteurPalindrome
+from src.langueFrancaise import LangueFrancaise
+from src.langueAnglaise import LangueAnglaise
+from utilities.detecteurPalindromBuilder import DetecteurPalidromeBuilder
 
 cas_test_non_palindrome = ['test', 'epsi']
 
@@ -12,7 +15,8 @@ class MyTestCase(unittest.TestCase):
         for chaine in cas_test_non_palindrome:
             with self.subTest(chaine):
                 # QUAND je demande si elle est un palindrome
-                resultat = DetecteurPalindrome.detecter(chaine)
+                detecteur = DetecteurPalindromeBuilder().build()
+                resultat = detecteur.detecter(chaine)
 
                 # ALORS j'obtiens cette chaine en miroir
                 attendu = chaine[::-1]
@@ -20,13 +24,28 @@ class MyTestCase(unittest.TestCase):
 
     def test_bien_dit(self):
         # ETANT DONNE un palindrome
+        # ET que l'utilisateur parle français
+        langue = LangueFrancaise()
         palindrome = 'radar'
 
         # QUAND on le fournit au détecteur
-        resultat = DetecteurPalindrome.detecter(palindrome)
+        resultat = DetecteurPalindromeBuilder().ayantPourLangue(langue).build().detecter(palindrome)
 
         # ALORS on obtient cette chaine suivie de "Bien dit !"
         attendu = palindrome + os.linesep + 'Bien dit !'
+        self.assertIn(attendu, resultat)
+
+    def test_well_said(self):
+        # ETANT DONNE un palindrome
+        # ET que l'utilisateur parle anglais
+        langue = LangueAnglaise()
+        palindrome = 'radar'
+
+        # QUAND on le fournit au détecteur
+        resultat = DetecteurPalindromeBuilder().ayantPourLangue(langue).build().detecter(palindrome)
+
+        # ALORS on obtient cette chaine suivie de "Well Said !"
+        attendu = palindrome + os.linesep + 'Well Said !'
         self.assertIn(attendu, resultat)
 
     def test_absence_bien_dit(self):
@@ -34,7 +53,7 @@ class MyTestCase(unittest.TestCase):
         for chaine in cas_test_non_palindrome:
             with self.subTest(chaine):
                 # QUAND on le fournit au détecteur
-                resultat = DetecteurPalindrome.detecter(chaine)
+                resultat = DetecteurPalindromeBuilder().build().detecter(chaine)
 
                 # ALORS "Bien dit !" n'apparaît pas
                 self.assertNotIn('Bien dit !', resultat)

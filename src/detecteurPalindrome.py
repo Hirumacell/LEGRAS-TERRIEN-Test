@@ -1,9 +1,10 @@
 import os
 
-
 class DetecteurPalindrome:
-    @classmethod
-    def detecter(cls, chaine):
+    def __init__(self, langue):
+        self.__langue = langue
+
+    def detecter(self, chaine):
         miroir = chaine[::-1]
 
         debut = ('Bonjour'
@@ -11,4 +12,4 @@ class DetecteurPalindrome:
                  + miroir
                  + os.linesep)
 
-        return debut if "Bien dit !" + chaine == miroir else miroir + "Au revoir"
+        return (debut + self.__langue.feliciter() if chaine == miroir else debut) + "Au revoir"
