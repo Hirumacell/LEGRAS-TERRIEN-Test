@@ -3,11 +3,13 @@ import unittest
 
 from src.detecteurPalindrome import DétecteurPalindrome
 
+cas_test_non_palindrome = ['test', 'epsi']
+
 
 class MyTestCase(unittest.TestCase):
     def test_miroir(self):
         # ETANT DONNE une chaîne
-        for chaîne in ['test', 'epsi']:
+        for chaîne in cas_test_non_palindrome:
             with self.subTest(chaîne):
                 # QUAND je demande si elle est un palindrome
                 résultat = DétecteurPalindrome.détecter(chaîne)
@@ -26,6 +28,16 @@ class MyTestCase(unittest.TestCase):
         # ALORS on obtient cette chaîne suivie de "Bien dit !"
         attendu = palindrome + os.linesep + 'Bien dit !'
         self.assertIn(attendu, résultat)
+
+    def test_absence_bien_dit(self):
+        # ETANT DONNE un non-palindrome
+        for chaîne in cas_test_non_palindrome:
+            with self.subTest(chaîne):
+                # QUAND on le fournit au détecteur
+                résultat = DétecteurPalindrome.détecter(chaîne)
+
+                # ALORS "Bien dit !" n'apparaît pas
+                self.assertNotIn('Bien dit !', résultat)
 
     def test_bonjour(self):
         # ETANT DONNE une chaîne
