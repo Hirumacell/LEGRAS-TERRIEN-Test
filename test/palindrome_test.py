@@ -1,15 +1,16 @@
 import os
 import unittest
 
-from src.detecteurPalindrome import DetecteurPalindrome
 from src.langueFrancaise import LangueFrancaise
 from src.langueAnglaise import LangueAnglaise
 from utilities.detecteurPalindromeBuilder import DetecteurPalindromeBuilder
+from utilities.langueSpy import LangueSpy
 
 cas_test_non_palindrome = ['test', 'epsi']
 
 
 class MyTestCase(unittest.TestCase):
+
     def test_miroir(self):
         # ETANT DONNE une chaine
         for chaine in cas_test_non_palindrome:
@@ -22,77 +23,61 @@ class MyTestCase(unittest.TestCase):
                 attendu = chaine[::-1]
                 self.assertIn(attendu, resultat)
 
-    def test_bien_dit(self):
-        # ETANT DONNE un palindrome
-        # ET que l'utilisateur parle français
-        langue = LangueFrancaise()
-        palindrome = 'radar'
 
-        # QUAND on le fournit au détecteur
-        resultat = DetecteurPalindromeBuilder().ayantPourLangue(langue).build().detecter(palindrome)
+    def test_felicitation(self):
+        cas = [[LangueFrancaise(), "Bien dit !"], [LangueAnglaise(), "Well said !"]]
 
-        # ALORS on obtient cette chaine suivie de "Bien dit !"
-        attendu = palindrome + os.linesep + 'Bien dit !'
-        self.assertIn(attendu, resultat)
+        for param in cas:
+            with self.subTest(param[0]):
+                langue = param[0]
+                palindrome = 'kayak'
 
-    def test_well_said(self):
-        # ETANT DONNE un palindrome
-        # ET que l'utilisateur parle anglais
-        langue = LangueAnglaise()
-        palindrome = 'radar'
+                resultat = DetecteurPalindromeBuilder().ayantPourLangue(langue).build().detecter(palindrome)
 
-        # QUAND on le fournit au détecteur
-        resultat = DetecteurPalindromeBuilder().ayantPourLangue(langue).build().detecter(palindrome)
+                attendu = palindrome + os.linesep + param[1]
+                self.assertIn(attendu, resultat)
 
-        # ALORS on obtient cette chaine suivie de "Well Said !"
-        attendu = palindrome + os.linesep + 'Well Said !'
-        self.assertIn(attendu, resultat)
 
     def test_absence_bien_dit(self):
         # ETANT DONNE un non-palindrome
         for chaine in cas_test_non_palindrome:
             with self.subTest(chaine):
                 # QUAND on le fournit au détecteur
-                resultat = DetecteurPalindromeBuilder().build().detecter(chaine)
+                langue = LangueSpy()
+                resultat = DetecteurPalindromeBuilder().ayantPourLangue(langue).build().detecter(chaine)
 
                 # ALORS "Bien dit !" n'apparaît pas
-                self.assertNotIn('Bien dit !', resultat)
+                self.assertFalse(langue.felicitationsConsultees())
 
-    def test_bonjour(self):
-        # ETANT DONNE une chaine
-        chaine = 'test'
-
-        # QUAND je demande si elle est un palindrome
-        resultat = DetecteurPalindromeBuilder().build().detecter(chaine)
-
-        # ALORS la première ligne est "Bonjour"
-        premiere_ligne = resultat.split(os.linesep)[0]
-        self.assertEqual('Bonjour', premiere_ligne)
 
     def test_AuRevoir(self):
-        # ETANT DONNE une chaine
-        chaine = 'test'
+        cas = [[LangueFrancaise(), "Au revoir"], [LangueAnglaise(), "Goodbye"]]
+        for param in cas:
+            with self.subTest(param[0]):
+                langue = param[0]
+                chaine = 'test'
 
-        # QUAND je demande si elle est un palindrome
-        resultat = DetecteurPalindromeBuilder().build().detecter(chaine)
+                resultat = DetecteurPalindromeBuilder().ayantPourLangue(langue).build().detecter(chaine)
 
-        # ALORS la dernière ligne est "Au revoir"
-        derniere_ligne = resultat.split(os.linesep)[-1]
-        self.assertEqual('Au revoir', derniere_ligne)
-
-    def test_bonjour2(self):
-        # ETANT DONNE une chaine
-        cas = ['kayak','test']
-
-        for chaine in cas:
-            with self.subTest(chaine):
-                # QUAND je demande si elle est un palindrome
-                resultat = DetecteurPalindromeBuilder().build().detecter(chaine)
+                derniere_ligne = resultat.split(os.linesep)[-1]
+                self.assertEqual(param[1], derniere_ligne)
 
 
-                # ALORS la première ligne est "Bonjour"
-                premiere_ligne = resultat.split(os.linesep)[0]
-                self.assertEqual('Bonjour', premiere_ligne)
+    def test_bonjour(self):
+        cas = [[LangueFrancaise(), "Bonjour"], [LangueAnglaise(), "Hello"]]
+
+        for param in cas:
+            with self.subTest(param[0]):
+                langue = param[0]
+                casChaine = ['kayak', 'test']
+                for chaine in casChaine:
+                    with self.subTest(chaine):
+                        resultat = DetecteurPalindromeBuilder().ayantPourLangue(langue).build().detecter(chaine)
+
+                        premiere_ligne = resultat.split(os.linesep)[0]
+                        self.assertEqual(param[1], premiere_ligne)
+
+
 
 if __name__ == '__main__':
     unittest.main()
