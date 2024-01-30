@@ -4,7 +4,7 @@ import unittest
 from src.detecteurPalindrome import DetecteurPalindrome
 from src.langueFrancaise import LangueFrancaise
 from src.langueAnglaise import LangueAnglaise
-from utilities.detecteurPalindromBuilder import DetecteurPalidromeBuilder
+from utilities.detecteurPalindromeBuilder import DetecteurPalindromeBuilder
 
 cas_test_non_palindrome = ['test', 'epsi']
 
@@ -63,7 +63,7 @@ class MyTestCase(unittest.TestCase):
         chaine = 'test'
 
         # QUAND je demande si elle est un palindrome
-        resultat = DetecteurPalindrome.detecter(chaine)
+        resultat = DetecteurPalindromeBuilder.build().detecter(chaine)
 
         # ALORS la première ligne est "Bonjour"
         premiere_ligne = resultat.split(os.linesep)[0]
@@ -74,7 +74,7 @@ class MyTestCase(unittest.TestCase):
         chaine = 'test'
 
         # QUAND je demande si elle est un palindrome
-        resultat = DetecteurPalindrome.detecter(chaine)
+        resultat = DetecteurPalindromeBuilder().build().detecter(chaine)
 
         # ALORS la dernière ligne est "Au revoir"
         derniere_ligne = resultat.split(os.linesep)[-1]
@@ -86,7 +86,7 @@ class MyTestCase(unittest.TestCase):
 
         for chaine in cas:
             # QUAND je demande si elle est un palindrome
-            resultat = DetecteurPalindrome.detecter(chaine)
+            resultat = DetecteurPalindromeBuilder.build().detecter(chaine)
 
             # ALORS la première ligne est "Bonjour"
             premiere_ligne = resultat.split(os.linesep)[0]

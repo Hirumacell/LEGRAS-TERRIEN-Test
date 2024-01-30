@@ -1,5 +1,5 @@
 from src.detecteurPalindrome import DetecteurPalindrome
-from langueStub import LangueStub
+from utilities.langueStub import LangueStub
 
 class DetecteurPalindromeBuilder:
     __langue = LangueStub()
