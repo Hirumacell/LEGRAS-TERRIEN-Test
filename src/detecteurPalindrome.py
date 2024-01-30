@@ -1,14 +1,14 @@
 import os
 
 
-class DétecteurPalindrome:
+class DetecteurPalindrome:
     @classmethod
-    def détecter(cls, chaîne):
-        miroir = chaîne[::-1]
+    def detecter(cls, chaine):
+        miroir = chaine[::-1]
 
-        début = ('Bonjour'
+        debut = ('Bonjour'
                  + os.linesep
                  + miroir
                  + os.linesep)
 
-        return début + "Bien dit !" if chaîne == miroir else début + "Au revoir"
+        return debut + "Bien dit !" if chaine == miroir else debut + "Au revoir"
