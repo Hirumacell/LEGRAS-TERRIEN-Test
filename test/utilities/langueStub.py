@@ -1,2 +1,3 @@
 class LangueStub:
-    pass
+    def feliciter(self):
+        return "Bien dit !"

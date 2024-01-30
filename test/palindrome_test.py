@@ -85,13 +85,14 @@ class MyTestCase(unittest.TestCase):
         cas = ['kayak','test']
 
         for chaine in cas:
-            # QUAND je demande si elle est un palindrome
-            resultat = DetecteurPalindromeBuilder().build().detecter(chaine)
+            with self.subTest(chaine):
+                # QUAND je demande si elle est un palindrome
+                resultat = DetecteurPalindromeBuilder().build().detecter(chaine)
 
 
-            # ALORS la première ligne est "Bonjour"
-            premiere_ligne = resultat.split(os.linesep)[0]
-            self.assertEqual('Bonjour', premiere_ligne)
+                # ALORS la première ligne est "Bonjour"
+                premiere_ligne = resultat.split(os.linesep)[0]
+                self.assertEqual('Bonjour', premiere_ligne)
 
 if __name__ == '__main__':
     unittest.main()
