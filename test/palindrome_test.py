@@ -3,6 +3,7 @@ import unittest
 
 from src.langueFrancaise import LangueFrancaise
 from src.langueAnglaise import LangueAnglaise
+from src.detecteurPalindrome import DetecteurPalindrome
 from utilities.detecteurPalindromeBuilder import DetecteurPalindromeBuilder
 from utilities.langueSpy import LangueSpy
 
@@ -44,7 +45,9 @@ class MyTestCase(unittest.TestCase):
             with self.subTest(chaine):
                 # QUAND on le fournit au détecteur
                 langue = LangueSpy()
-                resultat = DetecteurPalindromeBuilder().ayantPourLangue(LangueFrancaise()).build().detecter(chaine)
+                detecteur = DetecteurPalindromeBuilder().ayantPourLangue(langue).build()
+
+                detecteur.detecter(chaine)
 
                 # ALORS on ne le félicite pas
                 self.assertFalse(langue.felicitationsConsultees())
