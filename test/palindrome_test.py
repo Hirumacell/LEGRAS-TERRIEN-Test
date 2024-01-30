@@ -3,7 +3,6 @@ import unittest
 
 from src.langueFrancaise import LangueFrancaise
 from src.langueAnglaise import LangueAnglaise
-from src.detecteurPalindrome import DetecteurPalindrome
 from utilities.detecteurPalindromeBuilder import DetecteurPalindromeBuilder
 from utilities.langueSpy import LangueSpy
 
