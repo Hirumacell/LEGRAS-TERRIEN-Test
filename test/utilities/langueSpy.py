@@ -1,7 +1,7 @@
-from langueStub import LangueStub as langueStub
+from langueStub import LangueStub
 
 
-class LangueSpy(langueStub):
+class LangueSpy(LangueStub):
     __felicitatiosConsultees = False
 
     def felicitationsConsultees(self):
