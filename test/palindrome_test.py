@@ -63,7 +63,7 @@ class MyTestCase(unittest.TestCase):
         chaine = 'test'
 
         # QUAND je demande si elle est un palindrome
-        resultat = DetecteurPalindromeBuilder.build().detecter(chaine)
+        resultat = DetecteurPalindromeBuilder().build().detecter(chaine)
 
         # ALORS la première ligne est "Bonjour"
         premiere_ligne = resultat.split(os.linesep)[0]
@@ -86,7 +86,8 @@ class MyTestCase(unittest.TestCase):
 
         for chaine in cas:
             # QUAND je demande si elle est un palindrome
-            resultat = DetecteurPalindromeBuilder.build().detecter(chaine)
+            resultat = DetecteurPalindromeBuilder().build().detecter(chaine)
+
 
             # ALORS la première ligne est "Bonjour"
             premiere_ligne = resultat.split(os.linesep)[0]
