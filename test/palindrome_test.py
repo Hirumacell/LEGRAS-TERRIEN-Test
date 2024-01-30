@@ -44,9 +44,9 @@ class MyTestCase(unittest.TestCase):
             with self.subTest(chaine):
                 # QUAND on le fournit au détecteur
                 langue = LangueSpy()
-                resultat = DetecteurPalindromeBuilder().ayantPourLangue(langue).build().detecter(chaine)
+                resultat = DetecteurPalindromeBuilder().ayantPourLangue(LangueFrancaise()).build().detecter(chaine)
 
-                # ALORS "Bien dit !" n'apparaît pas
+                # ALORS on ne le félicite pas
                 self.assertFalse(langue.felicitationsConsultees())
 
 
