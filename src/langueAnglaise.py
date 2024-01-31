@@ -5,19 +5,25 @@ class LangueAnglaise:
         return "Well said !"
 
     def bonjour(self, momentJournee):
-        match momentJournee:
-            case MomentJournee.Matin:
-                return "Good morning"
-            case MomentJournee.Apres_midi:
-                return "Good afternoon"
-            case MomentJournee.Soir:
-                return "Good evening"
-            case MomentJournee.Nuit:
-                return "Good night"
-        return "Hello"
+        if(momentJournee == MomentJournee.Matin):
+            return "Good morning"
+        elif(momentJournee == MomentJournee.Apres_midi):
+            return "Good afternoon"
+        elif(momentJournee == MomentJournee.Soir):
+            return "Good evening"
+        elif(momentJournee == MomentJournee.Nuit):
+            return "Good night"
+        else:
+            return "Good morning"
 
     def aurevoir(self, momentJournee):
-        match momentJournee:
-            case MomentJournee.Nuit:
-                return "Good night"
-        return "Goodbye"
+        if(momentJournee == MomentJournee.Matin):
+            return "Goodbye"
+        elif(momentJournee == MomentJournee.Apres_midi):
+            return "Goodbye"
+        elif(momentJournee == MomentJournee.Soir):
+            return "Good night"
+        elif(momentJournee == MomentJournee.Nuit):
+            return "Good night"
+        else:
+            return "Goodbye"
