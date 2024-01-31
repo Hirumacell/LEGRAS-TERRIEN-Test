@@ -1,9 +1,10 @@
+from langueFrancaise import LangueFrancaise
 from momentJournee import MomentJournee
 from src.detecteurPalindrome import DetecteurPalindrome
 from utilities.langueStub import LangueStub
 
 class DetecteurPalindromeBuilder:
-    __langue = LangueStub()
+    __langue = LangueFrancaise()
     __momentJournee = MomentJournee.Default
 
     @classmethod
@@ -18,5 +19,5 @@ class DetecteurPalindromeBuilder:
         return self
 
     def ayantPourMomentJournee(self, momentJournee):
-        self.__langue = momentJournee
+        self.__momentJournee = momentJournee
         return self
