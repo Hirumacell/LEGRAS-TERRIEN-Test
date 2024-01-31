@@ -16,7 +16,7 @@ class MyTestCase(unittest.TestCase):
         for chaine in cas_test_non_palindrome:
             with self.subTest(chaine):
                 # QUAND je demande si elle est un palindrome
-                detecteur = DetecteurPalindromeBuilder().build()
+                detecteur = DetecteurPalindromeBuilder().buildDefault()
                 resultat = detecteur.detecter(chaine)
 
                 # ALORS j'obtiens cette chaine en miroir
