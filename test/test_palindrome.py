@@ -54,33 +54,55 @@ class MyTestCase(unittest.TestCase):
 
 
     def test_AuRevoir(self):
-        cas = [[LangueFrancaise(), "Au revoir", MomentJournee.MATIN],
-               [LangueAnglaise(), "Goodbye", MomentJournee.MATIN]]
+        cas = [
+            [LangueFrancaise(), MomentJournee.Default, "Au revoir"],
+            [LangueFrancaise(), MomentJournee.Matin, "Bonne journée"],
+            [LangueFrancaise(), MomentJournee.Apres_midi, "Bon après-midi"],
+            [LangueFrancaise(), MomentJournee.Soir, "Bonne soirée"],
+            [LangueFrancaise(), MomentJournee.Nuit, "Bonne nuit"],
+            [LangueAnglaise(), MomentJournee.Default, "Goodbye"],
+            [LangueAnglaise(), MomentJournee.Matin, "Goodbye"],
+            [LangueAnglaise(), MomentJournee.Apres_midi, "Goodbye"],
+            [LangueAnglaise(), MomentJournee.Soir, "Goodbye"],
+            [LangueAnglaise(), MomentJournee.Nuit, "Good night"]
+        ]
         for param in cas:
             with self.subTest(param[0]):
                 langue = param[0]
-                momentJournee = param[2]
+                momentJournee = param[1]
                 chaine = 'test'
 
                 resultat = DetecteurPalindromeBuilder().ayantPourLangue(langue).ayantPourMomentJournee(momentJournee).build().detecter(chaine)
 
                 derniere_ligne = resultat.split(os.linesep)[-1]
-                self.assertEqual(param[1], derniere_ligne)
+                self.assertEqual(param[2], derniere_ligne)
 
 
     def test_bonjour(self):
-        cas = [[LangueFrancaise(), "Bonjour"], [LangueAnglaise(), "Hello"]]
+        cas = [
+            [LangueFrancaise(), MomentJournee.Default, "Bonjour"],
+            [LangueFrancaise(), MomentJournee.Matin, "Bonjour"],
+            [LangueFrancaise(), MomentJournee.Apres_midi, "Bonjour"],
+            [LangueFrancaise(), MomentJournee.Soir, "Bonsoir"],
+            [LangueFrancaise(), MomentJournee.Nuit, "Bonsoir"],
+            [LangueAnglaise(), MomentJournee.Default, "Hello"],
+            [LangueAnglaise(), MomentJournee.Matin, "Good morning"],
+            [LangueAnglaise(), MomentJournee.Apres_midi, "Good afternoon"],
+            [LangueAnglaise(), MomentJournee.Soir, "Good evening"],
+            [LangueAnglaise(), MomentJournee.Nuit, "Good night"]
+        ]
 
         for param in cas:
             with self.subTest(param[0]):
                 langue = param[0]
+                momentJournee = param[1]
                 casChaine = ['kayak', 'test']
                 for chaine in casChaine:
                     with self.subTest(chaine):
-                        resultat = DetecteurPalindromeBuilder().ayantPourLangue(langue).build().detecter(chaine)
+                        resultat = DetecteurPalindromeBuilder().ayantPourLangue(langue).ayantPourMomentJournee(momentJournee).build().detecter(chaine)
 
                         premiere_ligne = resultat.split(os.linesep)[0]
-                        self.assertEqual(param[1], premiere_ligne)
+                        self.assertEqual(param[2], premiere_ligne)
 
 
 

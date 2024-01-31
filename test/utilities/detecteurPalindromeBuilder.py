@@ -4,7 +4,7 @@ from utilities.langueStub import LangueStub
 
 class DetecteurPalindromeBuilder:
     __langue = LangueStub()
-    __momentJournee = MomentJournee()
+    __momentJournee = MomentJournee.Default
 
     @classmethod
     def buildDefault(self):
