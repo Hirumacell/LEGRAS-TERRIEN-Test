@@ -8,21 +8,21 @@ class LangueFrancaise:
         if(momentJournee == MomentJournee.Matin):
             return "Bonjour"
         elif(momentJournee == MomentJournee.Apres_midi):
-            return "Bon après-midi"
+            return "Bonjour"
         elif(momentJournee == MomentJournee.Soir):
             return "Bonsoir"
         elif(momentJournee == MomentJournee.Nuit):
-            return "Bonne nuit"
+            return "Bonsoir"
         else:
             return "Bonjour"
 
     def aurevoir(self, momentJournee):
         if(momentJournee == MomentJournee.Matin):
-            return "Au revoir"
+            return "Bonne journée"
         elif(momentJournee == MomentJournee.Apres_midi):
-            return "Au revoir"
+            return "Bon après-midi"
         elif(momentJournee == MomentJournee.Soir):
-            return "Bonne nuit"
+            return "Bonne soirée"
         elif(momentJournee == MomentJournee.Nuit):
             return "Bonne nuit"
         else:

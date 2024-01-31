@@ -14,7 +14,7 @@ class LangueAnglaise:
         elif(momentJournee == MomentJournee.Nuit):
             return "Good night"
         else:
-            return "Good morning"
+            return "Hello"
 
     def aurevoir(self, momentJournee):
         if(momentJournee == MomentJournee.Matin):
