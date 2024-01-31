@@ -80,16 +80,16 @@ class MyTestCase(unittest.TestCase):
 
     def test_bonjour(self):
         cas = [
-            #[LangueFrancaise(), MomentJournee.Default, "Bonjour"],
-            #[LangueFrancaise(), MomentJournee.Matin, "Bonjour"],
-            #[LangueFrancaise(), MomentJournee.Apres_midi, "Bonjour"],
-            #[LangueFrancaise(), MomentJournee.Soir, "Bonsoir"],
-            #[LangueFrancaise(), MomentJournee.Nuit, "Bonsoir"],
-            #[LangueAnglaise(), MomentJournee.Default, "Hello"],
+            [LangueFrancaise(), MomentJournee.Default, "Bonjour"],
+            [LangueFrancaise(), MomentJournee.Matin, "Bonjour"],
+            [LangueFrancaise(), MomentJournee.Apres_midi, "Bonjour"],
+            [LangueFrancaise(), MomentJournee.Soir, "Bonsoir"],
+            [LangueFrancaise(), MomentJournee.Nuit, "Bonsoir"],
+            [LangueAnglaise(), MomentJournee.Default, "Hello"],
             [LangueAnglaise(), MomentJournee.Matin, "Good morning"],
-            #[LangueAnglaise(), MomentJournee.Apres_midi, "Good afternoon"],
-            #LangueAnglaise(), MomentJournee.Soir, "Good evening"],
-            #[LangueAnglaise(), MomentJournee.Nuit, "Good night"]
+            [LangueAnglaise(), MomentJournee.Apres_midi, "Good afternoon"],
+            [LangueAnglaise(), MomentJournee.Soir, "Good evening"],
+            [LangueAnglaise(), MomentJournee.Nuit, "Good night"]
         ]
 
         for param in cas:
