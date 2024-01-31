@@ -11,7 +11,7 @@ class DetecteurPalindromeBuilder:
         return DetecteurPalindromeBuilder.build(self)
 
     def build(self):
-        return DetecteurPalindrome(self.__langue)
+        return DetecteurPalindrome(self.__langue, self.__momentJournee)
 
     def ayantPourLangue(self, langue):
         self.__langue = langue

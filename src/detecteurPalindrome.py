@@ -8,9 +8,15 @@ class DetecteurPalindrome:
     def detecter(self, chaine):
         miroir = chaine[::-1]
 
-        debut = (self.__langue.bonjour(self.__momentJournee)
-                 + os.linesep
-                 + miroir
-                 + os.linesep)
+        debut = self.bonjour() + os.linesep + miroir + os.linesep
 
-        return (debut + self.__langue.feliciter() if chaine == miroir else debut) + self.__langue.aurevoir(self.__momentJournee)
+        return (debut + self.bien_dit() if chaine == miroir else debut) + self.aurevoir()
+
+    def bonjour(self):
+        return self.__langue.bonjour(self.__momentJournee)
+
+    def bien_dit(self):
+        return self.__langue.feliciter()
+
+    def aurevoir(self):
+        return self.__langue.aurevoir(self.__momentJournee)

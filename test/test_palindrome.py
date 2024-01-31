@@ -99,7 +99,9 @@ class MyTestCase(unittest.TestCase):
                 casChaine = ['kayak', 'test']
                 for chaine in casChaine:
                     with self.subTest(chaine):
-                        resultat = DetecteurPalindromeBuilder().ayantPourLangue(langue).ayantPourMomentJournee(momentJournee).build().detecter(chaine)
+                        detecteur = DetecteurPalindromeBuilder().ayantPourLangue(langue).ayantPourMomentJournee(momentJournee).build()
+
+                        resultat = detecteur.detecter(chaine)
 
                         premiere_ligne = resultat.split(os.linesep)[0]
                         self.assertEqual(param[2], premiere_ligne)
