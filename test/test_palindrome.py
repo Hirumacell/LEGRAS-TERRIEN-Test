@@ -1,6 +1,7 @@
 import os
 import unittest
 
+from src.momentJournee import MomentJournee
 from src.langueFrancaise import LangueFrancaise
 from src.langueAnglaise import LangueAnglaise
 from utilities.detecteurPalindromeBuilder import DetecteurPalindromeBuilder
@@ -44,7 +45,7 @@ class MyTestCase(unittest.TestCase):
             with self.subTest(chaine):
                 # QUAND on le fournit au détecteur
                 langue = LangueSpy()
-                detecteur = DetecteurPalindromeBuilder().ayantPourLangue(langue).build()
+                detecteur = DetecteurPalindromeBuilder().buildDefault()
 
                 detecteur.detecter(chaine)
 
@@ -53,13 +54,15 @@ class MyTestCase(unittest.TestCase):
 
 
     def test_AuRevoir(self):
-        cas = [[LangueFrancaise(), "Au revoir"], [LangueAnglaise(), "Goodbye"]]
+        cas = [[LangueFrancaise(), "Au revoir", MomentJournee.MATIN],
+               [LangueAnglaise(), "Goodbye", MomentJournee.MATIN]]
         for param in cas:
             with self.subTest(param[0]):
                 langue = param[0]
+                momentJournee = param[2]
                 chaine = 'test'
 
-                resultat = DetecteurPalindromeBuilder().ayantPourLangue(langue).build().detecter(chaine)
+                resultat = DetecteurPalindromeBuilder().ayantPourLangue(langue).ayantPourMomentJournee(momentJournee).build().detecter(chaine)
 
                 derniere_ligne = resultat.split(os.linesep)[-1]
                 self.assertEqual(param[1], derniere_ligne)
