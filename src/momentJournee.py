@@ -6,3 +6,4 @@ class MomentJournee(Enum):
     Apres_midi = 2,
     Soir = 3,
     Nuit = 4
+
