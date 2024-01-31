@@ -1,4 +1,4 @@
-from momentJournee import *
+from src.momentJournee import MomentJournee
 
 class LangueAnglaise:
     def feliciter(self):
